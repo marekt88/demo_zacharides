@@ -6,7 +6,7 @@
         <title>IMPOFAI Test website</title>
         <style>
             body {
-                background-image: url('https://github.com/marekt88/impofai/blob/master/Github%20images/impofai%20multiple%20bg.png?raw=true');
+                background-image: url('https://raw.githubusercontent.com/marekt88/impofai/master/Github%20images/impofai%20multiple%20bg.png');
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
@@ -19,7 +19,7 @@
             }
             @media (max-width: 767px) {
                 body {
-                    background-image: url('https://raw.githubusercontent.com/marekt88/impofai/master/Github%20images/impofai%20multiple%2');
+                    background-image: url('https://raw.githubusercontent.com/marekt88/impofai/master/Github%20images/impofai%20multiple%20bg.png');
                 }
             }
             .content {
@@ -47,6 +47,15 @@
                 font-weight: bold;
                 color: #333;
             }
+            #chatButton {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
         </style>
     </head>
     <body>
@@ -55,20 +64,31 @@
             <p>Tu viete testovať chatbot predtým ako sa vloží na vašu stránku :)</p>
             <p>Naša stránka: <a href="http://www.impofai.com">www.impofai.com</a></p>
             <p class="highlight">Kliknite na ikonku dole vpravo -></p>
+            <button id="chatButton">Otvorit chat</button>
         </div>
-
-        <script type="text/javascript">
-            (function(d, t) {
-                var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-                v.onload = function() {
-                  window.voiceflow.chat.load({
-                    verify: { projectID: '66cb8065fa85a760239045e7' },
-                    url: 'https://general-runtime.voiceflow.com',
-                    versionID: 'production'
-                  });
+        
+        <script defer>
+            (function() {
+                const currentUrl = window.location.href.toLowerCase();
+                const blockedUrls = ["auto", "neni"];
+                
+                if (!blockedUrls.some(url => currentUrl.includes(url))) {
+                    window.VG_CONFIG = {
+                        ID: "OsKMjTSUH7pN4Mg",
+                        region: 'eu',
+                        render: 'popup', // popup or full-width
+                        
+                        stylesheets: [
+                            "https://storage.googleapis.com/voiceglow-cdn/vg_live_build/styles.css",
+                        ],
+                        //autostart: true, // Whether to autostart the chatbot with the proactive message
+                    }
+                    var VG_SCRIPT = document.createElement("script");
+                    VG_SCRIPT.src = "https://storage.googleapis.com/voiceglow-cdn/vg_live_build/vg_bundle.js";
+                    document.body.appendChild(VG_SCRIPT);
                 }
-                v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-            })(document, 'script');
+            })()
         </script>
+        
     </body>
 </html>
